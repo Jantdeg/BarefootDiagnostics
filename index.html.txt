@@ -75,7 +75,7 @@
 </head>
 <body>
   <header>
-    <img src="/mnt/data/logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
+    <img src="logo.png" alt="logo-icon-flat-transparent.png">
     <nav>
       <a href="#tools">Tools</a>
       <a href="#support">Support</a>
