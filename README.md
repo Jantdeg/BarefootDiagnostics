@@ -1,2 +1,2 @@
 # BarefootDiagnostics
-Online Presence for BarefootDIagnostics
+Online Presence for Barefoot Diagnostics
