@@ -71,11 +71,30 @@
       margin: 0 10px;
       text-decoration: none;
     }
+    .paypal-form {
+      display: inline-block;
+      text-align: left;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .paypal-form select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #0099bb;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .paypal-form input[type="image"] {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="logo-icon-flat-transparent.png">
+    <img src="logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
     <nav>
       <a href="#tools">Tools</a>
       <a href="#support">Support</a>
@@ -88,8 +107,8 @@
     <h2>Smart Tools. Smarter Advice.</h2>
     <p>Remote diagnostics from someone who gets it.</p>
     <div class="cta-buttons">
-      <button>Shop Tools</button>
-      <button>Book Help</button>
+      <button onclick="location.href='#tools'">Shop Tools</button>
+      <button onclick="location.href='#support'">Book Help</button>
     </div>
   </div>
 
@@ -97,24 +116,55 @@
     <h3>Tools I Trust</h3>
     <p>Curated, reliable tools I use myself. Simple. Honest. Effective.</p>
     <div class="tool-item" style="margin-top: 40px; text-align: left; display: flex; gap: 20px; align-items: center;">
-  <img src="https://m.media-amazon.com/images/I/71wV1K1V1+L._AC_SL1500_.jpg" alt="Actron CP9690 Elite OBD2 Scanner" style="width: 200px; border-radius: 8px;">
-  <div>
-    <h4 style="margin: 0; color: #0099bb;">Actron CP9690 Elite OBD2 Scanner</h4>
-    <p style="margin: 8px 0;">One of my favorite go-to scan tools. Great for ABS, SRS, and engine codes. Works well across multiple makes.</p>
-    <a href="https://www.amazon.com/dp/B01BW39HJS?psc=1&ref_=cm_sw_r_cp_ud_ct_CKR15TDAERPDA6SW3D2Z" target="_blank" style="color: white; background-color: #0099bb; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Check it on Amazon →</a>
-  </div>
-</div>
+      <img src="https://m.media-amazon.com/images/I/71wV1K1V1+L._AC_SL1500_.jpg" alt="Actron CP9690 Elite OBD2 Scanner" style="width: 200px; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0; color: #0099bb;">Actron CP9690 Elite OBD2 Scanner</h4>
+        <p style="margin: 8px 0;">One of my favorite go-to scan tools. Great for ABS, SRS, and engine codes. Works well across multiple makes.</p>
+        <a href="https://www.amazon.com/dp/B01BW39HJS?psc=1&ref_=cm_sw_r_cp_ud_ct_CKR15TDAERPDA6SW3D2Z" target="_blank" style="color: white; background-color: #0099bb; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Check it on Amazon →</a>
+      </div>
+    </div>
   </div>
 
   <div class="section" id="support">
     <h3>Remote Diagnostic Help</h3>
     <p>Get phone or Zoom-based support for parts and troubleshooting — quickly and accurately.</p>
-    <p style="margin: 20px 0;">
-      <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YOUR_BUTTON_ID" target="_blank" style="color: white; background-color: #0099bb; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
-        Book Help – $20 USD
-      </a>
-    </p>
-    <p style="font-size: 0.9rem; color: #777;">You’ll be redirected to PayPal to complete your payment and then receive contact instructions.</p>
+    
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="paypal-form">
+      <input type="hidden" name="cmd" value="_s-xclick" />
+      <input type="hidden" name="hosted_button_id" value="6Q8WV5S4PMQ6S" />
+      
+      <table>
+        <tr>
+          <td><strong>Service Type:</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <input type="hidden" name="on0" value="Automotive"/>
+            <select name="os0">
+              <option value="Any query related to Automotive/Commercial Vehicles">Automotive/Commercial Vehicle Query</option>
+              <option value="For access to a wealth of technical advice on any topic.">Technical Advice on Any Topic</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Parts Assistance:</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <input type="hidden" name="on1" value="Parts"/>
+            <select name="os1">
+              <option value="Hard to find Parts Hunt Starts here">Hard-to-Find Parts Hunt</option>
+              <option value="For those hard/impossible to locate parts.">Impossible-to-Locate Parts</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      
+      <input type="hidden" name="currency_code" value="USD" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Pay Now" />
+    </form>
+    
+    <p style="font-size: 0.9rem; color: #777; margin-top: 20px;">You'll be redirected to PayPal to complete your payment and then receive contact instructions.</p>
   </div>
 
   <div class="section" id="advice">
