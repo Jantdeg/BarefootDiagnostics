@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barefoot Diagnostics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #0f0f0f;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 60px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1500x500') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .cta-buttons button {
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 1rem;
+      border: none;
+      background-color: #0099bb;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    .section h3 {
+      font-size: 2rem;
+      color: #0099bb;
+      margin-bottom: 20px;
+    }
+    #toolsContainer {
+      margin-top: 30px;
+    }
+    .view-all-link {
+      margin-top: 30px;
+      display: inline-block;
+    }
+    .view-all-link a {
+      color: #0099bb;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border: 2px solid #0099bb;
+      border-radius: 5px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .view-all-link a:hover {
+      background-color: #0099bb;
+      color: white;
+    }
+    footer {
+      background-color: #0f0f0f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    footer a {
+      color: #0099bb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .paypal-form {
+      margin: 30px auto;
+    }
+    .loading {
+      color: #0099bb;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
+    <nav>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/AmazonTools.html">Tools</a>
+      <a href="#support">Support</a>
+      <a href="#advice">Advice</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Smart Tools. Smarter Advice.</h2>
+    <p>Remote diagnostics from someone who gets it.</p>
+    <div class="cta-buttons">
+      <button onclick="location.href='#tools'">Shop Tools</button>
+      <button onclick="location.href='#support'">Book Help</button>
+    </div>
+  </div>
+
+  <div class="section" id="tools">
+    <h3>Tools I Trust</h3>
+    <p>Curated, reliable tools I use myself. Simple. Honest. Effective.</p>
+    <div id="toolsContainer">
+      <p class="loading">Loading tools...</p>
+    </div>
+    <div class="view-all-link">
+      <a href="AmazonTools.html">View All Tools →</a>
+    </div>
+  </div>
+
+  <div class="section" id="support">
+    <h3>Remote Diagnostic Help</h3>
+    <p>Get phone or Zoom-based support for parts and troubleshooting – quickly and accurately.</p>
+    <p style="margin: 20px 0; font-weight: bold;">$15 USD per consultation</p>
+    
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="paypal-form">
+      <input type="hidden" name="cmd" value="_s-xclick" />
+      <input type="hidden" name="hosted_button_id" value="9EVG5W5LJSNPJ" />
+      <input type="hidden" name="currency_code" value="USD" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+    </form>
+    
+    <p style="font-size: 0.9rem; color: #777; margin-top: 20px;">You'll be redirected to PayPal to complete your payment and then receive contact instructions.</p>
+  </div>
+
+  <div class="section" id="advice">
+    <h3>Automotive Advice That Works</h3>
+    <p>Quick tips, deep dives, and proven fixes from real-world experience.</p>
+  </div>
+
+  <div class="section" id="contact">
+    <h3>Contact Me</h3>
+    <p>Email: <a href="mailto:barefootdiagnostics@gmail.com">barefootdiagnostics@gmail.com</a></p>
+    <p>
+      Follow me: 
+      <a href="https://www.facebook.com/barefootdiagnostics" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/barefootdiagnostics" target="_blank">Instagram</a>
+    </p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Barefoot Diagnostics LLC</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+  </footer>
+
+  <script>
+    async function loadRandomTools() {
+      try {
+        const response = await fetch('AmazonTools.html');
+        const html = await response.text();
+        
+        // Create a temporary div to parse the HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        
+        // Get all tool items
+        const toolItems = tempDiv.querySelectorAll('.tool-item');
+        const toolsArray = Array.from(toolItems);
+        
+        // Shuffle and select 3 random tools
+        const shuffled = toolsArray.sort(() => 0.5 - Math.random());
+        const selectedTools = shuffled.slice(0, 3);
+        
+        // Display the selected tools
+        const container = document.getElementById('toolsContainer');
+        if (selectedTools.length > 0) {
+          container.innerHTML = selectedTools.map(tool => tool.outerHTML).join('');
+        } else {
+          container.innerHTML = '<p>No tools available at the moment.</p>';
+        }
+      } catch (error) {
+        console.error('Error loading tools:', error);
+        document.getElementById('toolsContainer').innerHTML = '<p>Unable to load tools. Please try again later.</p>';
+      }
+    }
+    
+    // Load tools when page loads
+    loadRandomTools();
+  </script>
+</body>
+</html>
