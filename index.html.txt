@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barefoot Diagnostics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #0f0f0f;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 60px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1500x500') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .cta-buttons button {
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 1rem;
+      border: none;
+      background-color: #0099bb;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    .section h3 {
+      font-size: 2rem;
+      color: #0099bb;
+      margin-bottom: 20px;
+    }
+    footer {
+      background-color: #0f0f0f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    footer a {
+      color: #0099bb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .paypal-form {
+      margin: 30px auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
+    <nav>
+      <a href="#tools">Tools</a>
+      <a href="#support">Support</a>
+      <a href="#advice">Advice</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Smart Tools. Smarter Advice.</h2>
+    <p>Remote diagnostics from someone who gets it.</p>
+    <div class="cta-buttons">
+      <button onclick="location.href='#tools'">Shop Tools</button>
+      <button onclick="location.href='#support'">Book Help</button>
+    </div>
+  </div>
+
+  <div class="section" id="tools">
+    <h3>Tools I Trust</h3>
+    <p>Curated, reliable tools I use myself. Simple. Honest. Effective.</p>
+    <div class="tool-item" style="margin-top: 40px; text-align: left; display: flex; gap: 20px; align-items: center;">
+      <img src="https://m.media-amazon.com/images/I/81uuvdgrSDL._AC_SL1500_.jpg" alt="OEM Tools 2444 Cooling System Evac/Filler" style="width: 200px; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0; color: #0099bb;">OEMTOOLS 24444: Cooling System Refiller AirEvac Kit</h4>
+        <p style="margin: 8px 0;">Easy to use, extremely good build quality from the gauge to the valves to the tubing used.</p>
+        <a href="https://www.amazon.com/dp/B01BW39HJS?psc=1&ref_=cm_sw_r_cp_ud_ct_CKR15TDAERPDA6SW3D2Z" target="_blank" style="color: white; background-color: #0099bb; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Check it on Amazon →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="support">
+    <h3>Remote Diagnostic Help</h3>
+    <p>Get phone or Zoom-based support for parts and troubleshooting — quickly and accurately.</p>
+    <p style="margin: 20px 0; font-weight: bold;">$20 USD per consultation</p>
+    
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="paypal-form">
+      <input type="hidden" name="cmd" value="_s-xclick" />
+      <input type="hidden" name="hosted_button_id" value="HYKQFX6K68XRS" />
+      <input type="hidden" name="currency_code" value="USD" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Pay Now" />
+    </form>
+    
+    <p style="font-size: 0.9rem; color: #777; margin-top: 20px;">You'll be redirected to PayPal to complete your payment and then receive contact instructions.</p>
+  </div>
+
+  <div class="section" id="advice">
+    <h3>Automotive Advice That Works</h3>
+    <p>Quick tips, deep dives, and proven fixes from real-world experience.</p>
+  </div>
+
+  <div class="section" id="contact">
+    <h3>Contact Me</h3>
+    <p>Email: <a href="mailto:barefootdiagnostics@gmail.com">barefootdiagnostics@gmail.com</a></p>
+    <p>
+      Follow me: 
+      <a href="https://www.facebook.com/barefootdiagnostics" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/barefootdiagnostics" target="_blank">Instagram</a>
+    </p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Barefoot Diagnostics LLC</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+  </footer>
+</body>
+</html>
