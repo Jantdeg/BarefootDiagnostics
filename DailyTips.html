@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Tips - Barefoot Diagnostics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #0f0f0f;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 60px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #0099bb;
+    }
+    .hero-small {
+      background: linear-gradient(135deg, #0099bb 0%, #007a99 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-small::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gearRotate 60s linear infinite;
+    }
+    @keyframes gearRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .hero-small h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-small p {
+      font-size: 1.2rem;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .intro h2 {
+      color: #0099bb;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .intro p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    .tips-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .tip-card {
+      background: white;
+      border-radius: 12px;
+      padding: 35px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tip-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 153, 187, 0.2);
+    }
+    .tip-date {
+      color: #0099bb;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+    .tip-card h2 {
+      color: #0f0f0f;
+      font-size: 1.8rem;
+      margin: 0 0 20px 0;
+      line-height: 1.3;
+    }
+    .tip-content {
+      color: #555;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+    .tip-content p {
+      margin: 0 0 15px 0;
+    }
+    .tip-content p:last-child {
+      margin-bottom: 0;
+    }
+    footer {
+      background-color: #0f0f0f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 80px;
+    }
+    footer a {
+      color: #0099bb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .hero-small h1 {
+        font-size: 2rem;
+      }
+      .tip-card {
+        padding: 25px;
+      }
+      .tip-card h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
+    <nav>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/">Home</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/AmazonTools.html">Tools</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/DailyTips.html">Tips</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/#support">Support</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero-small">
+    <h1>Daily Tips & Insights</h1>
+    <p>Real-world automotive knowledge from the shop floor</p>
+  </div>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Straight Talk. No Fluff.</h2>
+      <p>Practical advice, diagnostic tips, and hard-earned lessons from years in the bay.</p>
+    </div>
+
+    <div class="tips-feed">
+      <article class="tip-card">
+        <div class="tip-date">October 6, 2025</div>
+        <h2>Essential Car Battery Maintenance: Ensure Reliability and Performance</h2>
+        <div class="tip-content">
+        <p>Understanding your car's battery is essential for maintaining reliability and performance. It is one of the most critical components, yet it often gets overlooked until issues arise. Recognizing the warning signs and practicing proper care can prevent unexpected breakdowns and costly repairs.</p>
+        <p>Common indicators of battery trouble include difficulty starting the engine, especially in extreme temperatures. You may notice sluggish cranking or multiple attempts needed to start your vehicle. Additionally, dashboard warning lights, dim headlights, or erratic electrical systems signal potential battery failure. Regular testing of batteries over three years old is crucial to ensure optimal performance.</p>
+        <p>The alternator plays a vital role in maintaining battery health, recharging it while the engine runs. A failing alternator can lead to overcharging or undercharging, significantly decreasing battery lifespan. Watch for signs such as flickering lights or unusual noises, as these could indicate alternator issues.</p>
+        <p>Heat is another silent enemy of battery life. High temperatures can accelerate chemical reactions within the battery, leading to quicker degradation. In hot climates, batteries tend to fail sooner, so parking in shaded areas and ensuring adequate ventilation is advisable.</p>
+        <p>Despite the marketing of "maintenance-free" batteries, they still require attention. They can lose electrolyte through evaporation, necessitating regular checks to prevent premature failure.</p>
+        <p>Professional testing offers a comprehensive assessment of battery condition, measuring cold cranking amps and internal resistance. Most batteries last between three to five years, but extreme conditions can shorten this lifespan. When replacing a battery, ensure it matches your vehicle's specifications to avoid performance issues or safety hazards.</p>
+        <p>By understanding these critical aspects of battery maintenance, you can ensure your vehicle remains reliable. Staying informed and proactive is key to optimal vehicle performance.</p>
+        <p>Citations:</p>
+        <p>- Automotive Battery Care Guide</p>
+        <p>- National Highway Traffic Safety Administration</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Barefoot Diagnostics LLC</p>
+    <p>
+      <a href="mailto:barefootdiagnostics@gmail.com">Email</a> |
+      <a href="https://www.facebook.com/barefootdiagnostics" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/barefootdiagnostics" target="_blank">Instagram</a>
+    </p>
+  </footer>
+</body>
+</html>
