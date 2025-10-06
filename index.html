@@ -29,6 +29,9 @@
       text-decoration: none;
       font-weight: bold;
     }
+    nav a:hover {
+      color: #0099bb;
+    }
     .hero {
       background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1500x500') center/cover no-repeat;
       color: white;
@@ -82,6 +85,58 @@
       background-color: #0099bb;
       color: white;
     }
+    .tips-preview {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    .tips-header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #0099bb;
+    }
+    .tips-header h4 {
+      color: #0099bb;
+      font-size: 1.5rem;
+      margin: 0 0 10px 0;
+    }
+    .tips-header p {
+      color: #666;
+      margin: 0;
+      font-size: 1rem;
+    }
+    .tip-item {
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .tip-item:last-child {
+      border-bottom: none;
+    }
+    .tip-date {
+      color: #0099bb;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .tip-title {
+      color: #333;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      display: block;
+      transition: color 0.3s ease;
+    }
+    .tip-title:hover {
+      color: #0099bb;
+    }
+    .loading {
+      color: #0099bb;
+      font-style: italic;
+    }
     footer {
       background-color: #0f0f0f;
       color: white;
@@ -96,10 +151,6 @@
     .paypal-form {
       margin: 30px auto;
     }
-    .loading {
-      color: #0099bb;
-      font-style: italic;
-    }
   </style>
 </head>
 <body>
@@ -107,6 +158,7 @@
     <img src="logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
     <nav>
       <a href="https://jantdeg.github.io/BarefootDiagnostics/AmazonTools.html">Tools</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/DailyTips.html">Tips</a>
       <a href="#support">Support</a>
       <a href="#advice">Advice</a>
       <a href="#contact">Contact</a>
@@ -117,7 +169,7 @@
     <h2>Smart Tools. Smarter Advice.</h2>
     <p>Remote diagnostics from someone who gets it.</p>
     <div class="cta-buttons">
-      <button onclick="location.href='#tools'">Shop Tools</button>
+      <button onclick="location.href='https://jantdeg.github.io/BarefootDiagnostics/AmazonTools.html'">Shop Tools</button>
       <button onclick="location.href='#support'">Book Help</button>
     </div>
   </div>
@@ -129,7 +181,22 @@
       <p class="loading">Loading tools...</p>
     </div>
     <div class="view-all-link">
-      <a href="AmazonTools.html">View All Tools →</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/AmazonTools.html">View All Tools</a>
+    </div>
+  </div>
+
+  <div class="section" id="tips">
+    <div class="tips-preview">
+      <div class="tips-header">
+        <h4>Daily Automotive Tips & Knowledge</h4>
+        <p>Fresh insights from the shop floor</p>
+      </div>
+      <div id="tipsContainer">
+        <p class="loading">Loading latest tips...</p>
+      </div>
+      <div class="view-all-link" style="text-align: center;">
+        <a href="https://jantdeg.github.io/BarefootDiagnostics/DailyTips.html">Read All Tips</a>
+      </div>
     </div>
   </div>
 
@@ -174,19 +241,15 @@
         const response = await fetch('AmazonTools.html');
         const html = await response.text();
         
-        // Create a temporary div to parse the HTML
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
         
-        // Get all tool items
         const toolItems = tempDiv.querySelectorAll('.tool-item');
         const toolsArray = Array.from(toolItems);
         
-        // Shuffle and select 3 random tools
         const shuffled = toolsArray.sort(() => 0.5 - Math.random());
         const selectedTools = shuffled.slice(0, 3);
         
-        // Display the selected tools
         const container = document.getElementById('toolsContainer');
         if (selectedTools.length > 0) {
           container.innerHTML = selectedTools.map(tool => tool.outerHTML).join('');
@@ -199,8 +262,41 @@
       }
     }
     
-    // Load tools when page loads
+    async function loadLatestTips() {
+      try {
+        const response = await fetch('DailyTips.html');
+        const html = await response.text();
+        
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        
+        const tipCards = tempDiv.querySelectorAll('.tip-card');
+        const tipsArray = Array.from(tipCards).slice(0, 3);
+        
+        const container = document.getElementById('tipsContainer');
+        if (tipsArray.length > 0) {
+          container.innerHTML = tipsArray.map(tip => {
+            const date = tip.querySelector('.tip-date').textContent;
+            const title = tip.querySelector('h2').textContent;
+            
+            return `
+              <div class="tip-item">
+                <div class="tip-date">${date}</div>
+                <a href="https://jantdeg.github.io/BarefootDiagnostics/DailyTips.html" class="tip-title">${title}</a>
+              </div>
+            `;
+          }).join('');
+        } else {
+          container.innerHTML = '<p style="text-align: center; color: #888;">No tips available yet. Check back soon!</p>';
+        }
+      } catch (error) {
+        console.error('Error loading tips:', error);
+        document.getElementById('tipsContainer').innerHTML = '<p style="text-align: center; color: #888;">Tips coming soon!</p>';
+      }
+    }
+    
     loadRandomTools();
+    loadLatestTips();
   </script>
 </body>
 </html>
