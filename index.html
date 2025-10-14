@@ -24,12 +24,12 @@
       z-index: 9999;
     }
     body::before {
-      left: -20px;
-      background: linear-gradient(to left, transparent, rgba(255, 140, 0, 0.9));
+      left: 0;
+      background: linear-gradient(to right, transparent, rgba(255, 140, 0, 0.9));
     }
     body::after {
-      right: -20px;
-      background: linear-gradient(to right, transparent, rgba(255, 140, 0, 0.9));
+      right: 0;
+      background: linear-gradient(to left, transparent, rgba(255, 140, 0, 0.9));
     }
     header {
       background-color: #0f0f0f;
@@ -89,8 +89,6 @@
       background-repeat: repeat;
       background-size: 135px 135px;
       opacity: 0.20;
-      transform: rotate(45deg);
-      transform-origin: center;
       pointer-events: none;
       z-index: 0;
     }
@@ -139,15 +137,14 @@
     .tips-preview::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      right: -50%;
-      bottom: -50%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background-image: url('logo_gear.png');
       background-repeat: repeat;
       background-size: 135px 135px;
       opacity: 0.20;
-      transform: rotate(45deg);
       pointer-events: none;
       z-index: 0;
     }
