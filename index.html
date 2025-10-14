@@ -12,8 +12,28 @@
       background-color: #f4f4f4;
       background-image: url('logo_gear.png');
       background-repeat: repeat;
-      background-size: 100px 100px;
+      background-size: 180px 180px;
+      opacity: 1;
       color: #333;
+      position: relative;
+    }
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    body::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(255, 120, 0, 0.6), transparent);
+    }
+    body::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(255, 120, 0, 0.6), transparent);
     }
     header {
       background-color: #0f0f0f;
@@ -60,10 +80,27 @@
       max-width: 1000px;
       margin: auto;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background-image: url('logo_gear.png');
       background-repeat: repeat;
-      background-size: 100px 100px;
+      background-size: 180px 180px;
+      opacity: 0.3;
+      transform: rotate(45deg);
+      transform-origin: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .section > * {
+      position: relative;
+      z-index: 1;
     }
     .section h3 {
       font-size: 2rem;
@@ -94,14 +131,32 @@
     }
     .tips-preview {
       background: white;
-      background-image: url('logo_gear.png');
-      background-repeat: repeat;
-      background-size: 100px 100px;
       border-radius: 12px;
       padding: 25px;
       margin-top: 30px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .tips-preview::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      background-image: url('logo_gear.png');
+      background-repeat: repeat;
+      background-size: 180px 180px;
+      opacity: 0.3;
+      transform: rotate(45deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .tips-preview > * {
+      position: relative;
+      z-index: 1;
     }
     .tips-header {
       text-align: center;
