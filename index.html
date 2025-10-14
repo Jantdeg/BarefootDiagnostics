@@ -24,12 +24,12 @@
       z-index: 9999;
     }
     body::before {
-      left: 0;
-      background: linear-gradient(to right, rgba(255, 140, 0, 0.9), transparent);
+      left: -20px;
+      background: linear-gradient(to left, transparent, rgba(255, 140, 0, 0.9));
     }
     body::after {
-      right: 0;
-      background: linear-gradient(to left, rgba(255, 140, 0, 0.9), transparent);
+      right: -20px;
+      background: linear-gradient(to right, transparent, rgba(255, 140, 0, 0.9));
     }
     header {
       background-color: #0f0f0f;
@@ -55,7 +55,7 @@
       background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1500x500') center/cover no-repeat;
       color: white;
       text-align: center;
-      padding: 66.7px 20px;
+      padding: 44.5px 20px;
     }
     .hero h2 {
       font-size: 2.5rem;
@@ -87,8 +87,8 @@
       bottom: 0;
       background-image: url('logo_gear.png');
       background-repeat: repeat;
-      background-size: 180px 180px;
-      opacity: 0.25;
+      background-size: 135px 135px;
+      opacity: 0.20;
       transform: rotate(45deg);
       transform-origin: center;
       pointer-events: none;
@@ -120,17 +120,18 @@
       border-radius: 5px;
       display: inline-block;
       transition: all 0.3s ease;
+      background-color: rgba(128, 128, 128, 0.3);
     }
     .view-all-link a:hover {
       background-color: #0099bb;
       color: white;
     }
     .tips-preview {
-      background: white;
+      background-color: rgba(128, 128, 128, 0.3);
       border-radius: 12px;
       padding: 25px;
       margin-top: 30px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
       text-align: left;
       position: relative;
       overflow: hidden;
@@ -144,8 +145,8 @@
       bottom: -50%;
       background-image: url('logo_gear.png');
       background-repeat: repeat;
-      background-size: 180px 180px;
-      opacity: 0.25;
+      background-size: 135px 135px;
+      opacity: 0.20;
       transform: rotate(45deg);
       pointer-events: none;
       z-index: 0;
@@ -155,7 +156,7 @@
       z-index: 1;
     }
     #toolsContainer .tool-item {
-      background-color: rgba(128, 128, 128, 0.2);
+      background-color: rgba(128, 128, 128, 0.3);
       padding: 20px;
       border-radius: 8px;
       position: relative;
