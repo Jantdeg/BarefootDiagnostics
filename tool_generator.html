@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tool Manager - Barefoot Diagnostics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      color: #0099bb;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+    .section {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(0, 153, 187, 0.2);
+    }
+    .section-title {
+      color: #0099bb;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      color: #0099bb;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid rgba(0, 153, 187, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #0099bb;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .helper-text {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 5px;
+    }
+    button {
+      background: linear-gradient(135deg, #0099bb 0%, #007a99 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 153, 187, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .btn-danger {
+      background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    }
+    .btn-success {
+      background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+      font-size: 1.2rem;
+      padding: 15px 40px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .tool-list {
+      margin-top: 20px;
+    }
+    .tool-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(0, 153, 187, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .tool-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .tool-info {
+      flex: 1;
+    }
+    .tool-title {
+      color: #0099bb;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .tool-desc {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    .tool-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .status {
+      text-align: center;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      display: none;
+    }
+    .status.success {
+      background: rgba(0, 200, 100, 0.2);
+      border: 2px solid #00c864;
+      color: #00ff80;
+    }
+    .status.error {
+      background: rgba(255, 50, 50, 0.2);
+      border: 2px solid #ff3232;
+      color: #ff6464;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tool Manager</h1>
+    <p class="subtitle">Manage your Amazon tools and generate AmazonTools.html</p>
+    
+    <div class="section">
+      <h2 class="section-title">Add New Tool</h2>
+      <form id="toolForm">
+        <div class="form-group">
+          <label for="toolTitle">Tool Title *</label>
+          <input type="text" id="toolTitle" required placeholder="OEMTOOLS 24444: Cooling System Refiller">
+          <div class="helper-text">Brand and model name</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="imageUrl">Product Image URL *</label>
+          <input type="text" id="imageUrl" required placeholder="https://m.media-amazon.com/images/I/...">
+          <div class="helper-text">Right-click on Amazon image → Copy image address</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="description">Description *</label>
+          <textarea id="description" required placeholder="Easy to use, extremely good build quality..."></textarea>
+          <div class="helper-text">Brief review or key features</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="amazonUrl">Amazon Product URL *</label>
+          <input type="text" id="amazonUrl" required placeholder="https://www.amazon.com/dp/...">
+          <div class="helper-text">Paste the full Amazon product link</div>
+        </div>
+        
+        <button type="submit">Add Tool</button>
+      </form>
+    </div>
+    
+    <div id="status" class="status"></div>
+    
+    <div class="section">
+      <h2 class="section-title">Current Tools (<span id="toolCount">0</span>)</h2>
+      <div id="toolList" class="tool-list">
+        <div class="empty-state">No tools added yet. Add your first tool above!</div>
+      </div>
+      
+      <button class="btn-success" id="downloadBtn" style="display: none;" onclick="downloadHTMLFile()">
+        Download AmazonTools.html
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let tools = [];
+    
+    // Load existing tools from your current page
+    function initializeTools() {
+      tools = [
+        {
+          title: "OEMTOOLS 24444: Cooling System Refiller AirEvac Kit",
+          image: "https://m.media-amazon.com/images/I/81uuvdgrSDL._AC_SL1500_.jpg",
+          description: "Easy to use, extremely good build quality from the gauge to the valves to the tubing used.",
+          url: "https://www.amazon.com/dp/B01BW39HJS?psc=1&ref_=cm_sw_r_cp_ud_ct_CKR15TDAERPDA6SW3D2Z"
+        },
+        {
+          title: "LEXIVON Butane Torch Multi-Function Kit",
+          image: "https://m.media-amazon.com/images/I/916j-7STUmL._AC_SL1500_.jpg",
+          description: "Easy to use, extremely good build quality from cordless soldering to brazing its done years of work and it's still going strong.",
+          url: "https://a.co/d/hDa4AbL"
+        },
+        {
+          title: "GEARWRENCH 3680D: 15Piece Serpentine Belt Kit",
+          image: "https://m.media-amazon.com/images/I/818Ykj4DAaL._AC_SL1500_.jpg",
+          description: "One of the most sturdy and important tools I own, A must have for any mechanic. I've abused and it's lasted.",
+          url: "https://a.co/d/7DSE5j2"
+        },
+        {
+          title: "JINKEY 4 Tire Pressure Equalizer System",
+          image: "https://m.media-amazon.com/images/I/71S744NcUnL._SL1500_.jpg",
+          description: "Easy to setup and sturdy design. This tool allows for filling & balancing pressure in up to 4 tyres at once.",
+          url: "https://a.co/d/eqPBEZO"
+        }
+      ];
+      renderTools();
+    }
+    
+    document.getElementById('toolForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const tool = {
+        title: document.getElementById('toolTitle').value,
+        image: document.getElementById('imageUrl').value,
+        description: document.getElementById('description').value,
+        url: document.getElementById('amazonUrl').value
+      };
+      
+      tools.push(tool);
+      renderTools();
+      
+      // Clear form
+      this.reset();
+      
+      showStatus('Tool added successfully!', 'success');
+    });
+    
+    function renderTools() {
+      const toolList = document.getElementById('toolList');
+      const toolCount = document.getElementById('toolCount');
+      const downloadBtn = document.getElementById('downloadBtn');
+      
+      toolCount.textContent = tools.length;
+      
+      if (tools.length === 0) {
+        toolList.innerHTML = '<div class="empty-state">No tools added yet. Add your first tool above!</div>';
+        downloadBtn.style.display = 'none';
+        return;
+      }
+      
+      downloadBtn.style.display = 'block';
+      
+      toolList.innerHTML = tools.map((tool, index) => `
+        <div class="tool-card">
+          <img src="${tool.image}" alt="${tool.title}">
+          <div class="tool-info">
+            <div class="tool-title">${tool.title}</div>
+            <div class="tool-desc">${tool.description}</div>
+            <div class="tool-actions">
+              <button class="btn-secondary" onclick="moveUp(${index})" ${index === 0 ? 'disabled' : ''}>↑</button>
+              <button class="btn-secondary" onclick="moveDown(${index})" ${index === tools.length - 1 ? 'disabled' : ''}>↓</button>
+              <button class="btn-danger" onclick="deleteTool(${index})">Delete</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function deleteTool(index) {
+      if (confirm('Are you sure you want to delete this tool?')) {
+        tools.splice(index, 1);
+        renderTools();
+        showStatus('Tool deleted', 'success');
+      }
+    }
+    
+    function moveUp(index) {
+      if (index > 0) {
+        [tools[index], tools[index - 1]] = [tools[index - 1], tools[index]];
+        renderTools();
+      }
+    }
+    
+    function moveDown(index) {
+      if (index < tools.length - 1) {
+        [tools[index], tools[index + 1]] = [tools[index + 1], tools[index]];
+        renderTools();
+      }
+    }
+    
+    function generateToolCardHTML(tool) {
+      return `      <div class="tool-card">
+        <img src="${tool.image}" alt="${tool.title}" class="tool-image">
+        <div class="tool-info">
+          <h3>${tool.title}</h3>
+          <p>${tool.description}</p>
+          <a href="${tool.url}" target="_blank" class="tool-link">Check it on Amazon →</a>
+        </div>
+      </div>`;
+    }
+    
+    function downloadHTMLFile() {
+      const toolCardsHTML = tools.map(tool => generateToolCardHTML(tool)).join('\n\n');
+      
+      const fullHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools - Barefoot Diagnostics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #0f0f0f;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 60px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #0099bb;
+    }
+    .hero-small {
+      background: linear-gradient(135deg, #0099bb 0%, #007a99 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-small::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gearRotate 60s linear infinite;
+    }
+    @keyframes gearRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .hero-small h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-small p {
+      font-size: 1.2rem;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .intro h2 {
+      color: #0099bb;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .intro p {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .tool-card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 153, 187, 0.2);
+    }
+    .tool-image {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f9f9f9;
+      padding: 10px;
+    }
+    .tool-info h3 {
+      color: #0099bb;
+      font-size: 1.3rem;
+      margin: 0 0 10px 0;
+    }
+    .tool-info p {
+      color: #555;
+      line-height: 1.6;
+      margin: 0 0 15px 0;
+      flex-grow: 1;
+    }
+    .tool-link {
+      display: inline-block;
+      background: linear-gradient(135deg, #0099bb 0%, #007a99 100%);
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tool-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 153, 187, 0.3);
+    }
+    footer {
+      background-color: #0f0f0f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 80px;
+    }
+    footer a {
+      color: #0099bb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-small h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
+    <nav>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/">Home</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/AmazonTools.html">Tools</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/#support">Support</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero-small">
+    <h1>Tools I Trust</h1>
+    <p>Professional-grade tools tested in real-world conditions</p>
+  </div>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Curated. Proven. Reliable.</h2>
+      <p>Every tool here has been put through its paces in my shop. These aren't sponsored recommendations—they're the tools I reach for when quality matters.</p>
+    </div>
+
+    <div class="tools-grid">
+${toolCardsHTML}
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Barefoot Diagnostics LLC</p>
+    <p>
+      <a href="mailto:barefootdiagnostics@gmail.com">Email</a> |
+      <a href="https://www.facebook.com/barefootdiagnostics" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/barefootdiagnostics" target="_blank">Instagram</a>
+    </p>
+  </footer>
+</body>
+</html>`;
+      
+      const blob = new Blob([fullHTML], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'AmazonTools.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showStatus('AmazonTools.html downloaded! Upload to GitHub to update your site.', 'success');
+    }
+    
+    function showStatus(message, type) {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.className = 'status ' + type;
+      status.style.display = 'block';
+      
+      setTimeout(() => {
+        status.style.display = 'none';
+      }, 5000);
+    }
+    
+    // Initialize with existing tools
+    initializeTools();
+  </script>
+</body>
+</html>

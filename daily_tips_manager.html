@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Tips Manager - Barefoot Diagnostics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      color: #0099bb;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+    .section {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(0, 153, 187, 0.2);
+    }
+    .section-title {
+      color: #0099bb;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      color: #0099bb;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    input[type="text"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid rgba(0, 153, 187, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #0099bb;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 200px;
+    }
+    .helper-text {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 5px;
+    }
+    button {
+      background: linear-gradient(135deg, #0099bb 0%, #007a99 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 153, 187, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .btn-danger {
+      background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    }
+    .btn-success {
+      background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+      font-size: 1.2rem;
+      padding: 15px 40px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .article-list {
+      margin-top: 20px;
+    }
+    .article-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(0, 153, 187, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .article-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 15px;
+    }
+    .article-title {
+      color: #0099bb;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .article-date {
+      color: #888;
+      font-size: 0.9rem;
+    }
+    .article-content {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      white-space: pre-wrap;
+    }
+    .article-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .status {
+      text-align: center;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      display: none;
+    }
+    .status.success {
+      background: rgba(0, 200, 100, 0.2);
+      border: 2px solid #00c864;
+      color: #00ff80;
+    }
+    .status.error {
+      background: rgba(255, 50, 50, 0.2);
+      border: 2px solid #ff3232;
+      color: #ff6464;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Daily Tips Manager</h1>
+    <p class="subtitle">Create and manage automotive tips & articles</p>
+    
+    <div class="section">
+      <h2 class="section-title">Add New Article</h2>
+      <form id="articleForm">
+        <div class="form-group">
+          <label for="articleTitle">Article Title *</label>
+          <input type="text" id="articleTitle" required placeholder="Why Your Coolant Temperature Matters">
+          <div class="helper-text">Clear, descriptive title</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="articleDate">Date *</label>
+          <input type="date" id="articleDate" required>
+          <div class="helper-text">Publication date</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="articleContent">Article Content *</label>
+          <textarea id="articleContent" required placeholder="Write your article content here..."></textarea>
+          <div class="helper-text">Full article text - use line breaks for paragraphs</div>
+        </div>
+        
+        <button type="submit">Add Article</button>
+      </form>
+    </div>
+    
+    <div id="status" class="status"></div>
+    
+    <div class="section">
+      <h2 class="section-title">Articles (<span id="articleCount">0</span>)</h2>
+      <div id="articleList" class="article-list">
+        <div class="empty-state">No articles added yet. Add your first article above!</div>
+      </div>
+      
+      <button class="btn-success" id="downloadBtn" style="display: none;" onclick="downloadHTMLFile()">
+        Download DailyTips.html
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let articles = [];
+    
+    // Set today's date as default
+    document.getElementById('articleDate').valueAsDate = new Date();
+    
+    document.getElementById('articleForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const article = {
+        title: document.getElementById('articleTitle').value,
+        date: document.getElementById('articleDate').value,
+        content: document.getElementById('articleContent').value
+      };
+      
+      articles.unshift(article); // Add to beginning (newest first)
+      renderArticles();
+      
+      // Clear form
+      this.reset();
+      document.getElementById('articleDate').valueAsDate = new Date();
+      
+      showStatus('Article added successfully!', 'success');
+    });
+    
+    function renderArticles() {
+      const articleList = document.getElementById('articleList');
+      const articleCount = document.getElementById('articleCount');
+      const downloadBtn = document.getElementById('downloadBtn');
+      
+      articleCount.textContent = articles.length;
+      
+      if (articles.length === 0) {
+        articleList.innerHTML = '<div class="empty-state">No articles added yet. Add your first article above!</div>';
+        downloadBtn.style.display = 'none';
+        return;
+      }
+      
+      downloadBtn.style.display = 'block';
+      
+      articleList.innerHTML = articles.map((article, index) => {
+        const dateObj = new Date(article.date + 'T00:00:00');
+        const formattedDate = dateObj.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+        
+        return `
+        <div class="article-card">
+          <div class="article-header">
+            <div>
+              <div class="article-title">${article.title}</div>
+              <div class="article-date">${formattedDate}</div>
+            </div>
+          </div>
+          <div class="article-content">${article.content.substring(0, 200)}${article.content.length > 200 ? '...' : ''}</div>
+          <div class="article-actions">
+            <button class="btn-secondary" onclick="moveUp(${index})" ${index === 0 ? 'disabled' : ''}>↑</button>
+            <button class="btn-secondary" onclick="moveDown(${index})" ${index === articles.length - 1 ? 'disabled' : ''}>↓</button>
+            <button class="btn-danger" onclick="deleteArticle(${index})">Delete</button>
+          </div>
+        </div>
+      `;
+      }).join('');
+    }
+    
+    function deleteArticle(index) {
+      if (confirm('Are you sure you want to delete this article?')) {
+        articles.splice(index, 1);
+        renderArticles();
+        showStatus('Article deleted', 'success');
+      }
+    }
+    
+    function moveUp(index) {
+      if (index > 0) {
+        [articles[index], articles[index - 1]] = [articles[index - 1], articles[index]];
+        renderArticles();
+      }
+    }
+    
+    function moveDown(index) {
+      if (index < articles.length - 1) {
+        [articles[index], articles[index + 1]] = [articles[index + 1], articles[index]];
+        renderArticles();
+      }
+    }
+    
+    function generateArticleHTML(article) {
+      const dateObj = new Date(article.date + 'T00:00:00');
+      const formattedDate = dateObj.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+      
+      const paragraphs = article.content.split('\n').filter(p => p.trim()).map(p => 
+        `        <p>${p.trim()}</p>`
+      ).join('\n');
+      
+      return `      <article class="tip-card">
+        <div class="tip-date">${formattedDate}</div>
+        <h2>${article.title}</h2>
+        <div class="tip-content">
+${paragraphs}
+        </div>
+      </article>`;
+    }
+    
+    function downloadHTMLFile() {
+      const articlesHTML = articles.map(article => generateArticleHTML(article)).join('\n\n');
+      
+      const fullHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Tips - Barefoot Diagnostics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #0f0f0f;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 60px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #0099bb;
+    }
+    .hero-small {
+      background: linear-gradient(135deg, #0099bb 0%, #007a99 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-small::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gearRotate 60s linear infinite;
+    }
+    @keyframes gearRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .hero-small h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-small p {
+      font-size: 1.2rem;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .intro h2 {
+      color: #0099bb;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .intro p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    .tips-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .tip-card {
+      background: white;
+      border-radius: 12px;
+      padding: 35px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tip-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 153, 187, 0.2);
+    }
+    .tip-date {
+      color: #0099bb;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+    .tip-card h2 {
+      color: #0f0f0f;
+      font-size: 1.8rem;
+      margin: 0 0 20px 0;
+      line-height: 1.3;
+    }
+    .tip-content {
+      color: #555;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+    .tip-content p {
+      margin: 0 0 15px 0;
+    }
+    .tip-content p:last-child {
+      margin-bottom: 0;
+    }
+    footer {
+      background-color: #0f0f0f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 80px;
+    }
+    footer a {
+      color: #0099bb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .hero-small h1 {
+        font-size: 2rem;
+      }
+      .tip-card {
+        padding: 25px;
+      }
+      .tip-card h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
+    <nav>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/">Home</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/AmazonTools.html">Tools</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/DailyTips.html">Tips</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/#support">Support</a>
+      <a href="https://jantdeg.github.io/BarefootDiagnostics/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero-small">
+    <h1>Daily Tips & Insights</h1>
+    <p>Real-world automotive knowledge from the shop floor</p>
+  </div>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Straight Talk. No Fluff.</h2>
+      <p>Practical advice, diagnostic tips, and hard-earned lessons from years in the bay.</p>
+    </div>
+
+    <div class="tips-feed">
+${articlesHTML}
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Barefoot Diagnostics LLC</p>
+    <p>
+      <a href="mailto:barefootdiagnostics@gmail.com">Email</a> |
+      <a href="https://www.facebook.com/barefootdiagnostics" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/barefootdiagnostics" target="_blank">Instagram</a>
+    </p>
+  </footer>
+</body>
+</html>`;
+      
+      const blob = new Blob([fullHTML], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'DailyTips.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showStatus('DailyTips.html downloaded! Upload to GitHub to update your site.', 'success');
+    }
+    
+    function showStatus(message, type) {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.className = 'status ' + type;
+      status.style.display = 'block';
+      
+      setTimeout(() => {
+        status.style.display = 'none';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
