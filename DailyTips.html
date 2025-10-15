@@ -11,20 +11,39 @@
       font-family: 'Roboto', sans-serif;
       background-color: #f4f4f4;
       color: #333;
+      position: relative;
+    }
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    body::before {
+      left: 0;
+      background: linear-gradient(to right, #000 0%, rgba(255, 140, 0, 0.9) 50%, transparent 100%);
+    }
+    body::after {
+      right: 0;
+      background: linear-gradient(to left, #000 0%, rgba(255, 140, 0, 0.9) 50%, transparent 100%);
     }
     header {
       background-color: #0f0f0f;
       color: white;
-      padding: 20px;
+      padding: 53.3px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-end;
     }
     header img {
-      height: 60px;
+      height: 160px;
     }
     nav a {
-      color: white;
+      color: #888;
       margin-left: 20px;
       text-decoration: none;
       font-weight: bold;
@@ -83,7 +102,7 @@
       margin-bottom: 15px;
     }
     .intro p {
-      color: #666;
+      color: #888;
       font-size: 1.1rem;
     }
     .tips-feed {
@@ -117,7 +136,7 @@
       line-height: 1.3;
     }
     .tip-content {
-      color: #555;
+      color: #888;
       line-height: 1.8;
       font-size: 1.05rem;
     }
@@ -131,12 +150,11 @@
       background-color: #0f0f0f;
       color: white;
       text-align: center;
-      padding: 20px;
-      margin-top: 80px;
+      padding: 30px 20px;
+      margin-top: 60px;
     }
     footer a {
       color: #0099bb;
-      margin: 0 10px;
       text-decoration: none;
     }
     footer a:hover {
@@ -157,13 +175,11 @@
 </head>
 <body>
   <header>
-    <img src="logo-icon-flat-transparent.png" alt="Barefoot Diagnostics Logo">
+    <img src="logo_full.png" alt="Barefoot Diagnostics Logo">
     <nav>
-      <a href="https://jantdeg.github.io/BarefootDiagnostics/">Home</a>
-      <a href="https://jantdeg.github.io/BarefootDiagnostics/AmazonTools.html">Tools</a>
-      <a href="https://jantdeg.github.io/BarefootDiagnostics/DailyTips.html">Tips</a>
-      <a href="https://jantdeg.github.io/BarefootDiagnostics/#support">Support</a>
-      <a href="https://jantdeg.github.io/BarefootDiagnostics/#contact">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="AmazonTools.html">Amazon Tools</a>
+      <a href="DailyTips.html">Daily Tips</a>
     </nav>
   </header>
 
@@ -199,12 +215,8 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 Barefoot Diagnostics LLC</p>
-    <p>
-      <a href="mailto:barefootdiagnostics@gmail.com">Email</a> |
-      <a href="https://www.facebook.com/barefootdiagnostics" target="_blank">Facebook</a> |
-      <a href="https://www.instagram.com/barefootdiagnostics" target="_blank">Instagram</a>
-    </p>
+    <p>&copy; 2025 Barefoot Diagnostics. All rights reserved.</p>
+    <p><a href="index.html">Home</a> | <a href="AmazonTools.html">Amazon Tools</a> | <a href="DailyTips.html">Daily Tips</a></p>
   </footer>
 </body>
 </html>
