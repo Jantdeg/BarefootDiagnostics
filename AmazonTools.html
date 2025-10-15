@@ -1,31 +1,201 @@
-<div class="tool-item" style="margin-top: 40px; text-align: left; display: flex; gap: 20px; align-items: center;">
-      <img src="https://m.media-amazon.com/images/I/81uuvdgrSDL._AC_SL1500_.jpg" alt="OEM Tools 2444 Cooling System Evac/Filler" style="width: 200px; border-radius: 8px;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon Tools - Barefoot Diagnostics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      position: relative;
+    }
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    body::before {
+      left: 0;
+      background: linear-gradient(to right, #000 0%, rgba(255, 140, 0, 0.9) 50%, transparent 100%);
+    }
+    body::after {
+      right: 0;
+      background: linear-gradient(to left, #000 0%, rgba(255, 140, 0, 0.9) 50%, transparent 100%);
+    }
+    header {
+      background-color: #0f0f0f;
+      color: white;
+      padding: 53.3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    header img {
+      height: 160px;
+    }
+    nav a {
+      color: #888;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #0099bb;
+    }
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+      position: relative;
+    }
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 100%;
+      background-image: url('logo_gear.png');
+      background-repeat: space;
+      background-size: 300px 300px;
+      background-position: center top;
+      opacity: 0.20;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .section > * {
+      position: relative;
+      z-index: 1;
+    }
+    .section h1 {
+      font-size: 2.5rem;
+      color: #0099bb;
+      margin-bottom: 20px;
+    }
+    .section p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #666;
+    }
+    .tool-item {
+      margin-top: 40px;
+      text-align: left;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      background-color: rgba(128, 128, 128, 0.3);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
+    }
+    .tool-item img {
+      width: 200px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .tool-item h4 {
+      margin: 0;
+      color: #0099bb;
+      font-size: 1.3rem;
+    }
+    .tool-item p {
+      margin: 8px 0;
+      color: #333;
+      font-size: 1rem;
+    }
+    .tool-item a {
+      color: white;
+      background-color: #0099bb;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .tool-item a:hover {
+      background-color: #007a99;
+    }
+    footer {
+      background-color: #0f0f0f;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+    }
+    footer a {
+      color: #0099bb;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo_full.png" alt="Barefoot Diagnostics Logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="AmazonTools.html">Amazon Tools</a>
+      <a href="DailyTips.html">Daily Tips</a>
+    </nav>
+  </header>
+
+  <div class="section">
+    <h1>Recommended Amazon Tools</h1>
+    <p>Top-quality tools I personally use and recommend for automotive diagnostics and repair.</p>
+
+    <div class="tool-item">
+      <img src="https://m.media-amazon.com/images/I/81uuvdgrSDL._AC_SL1500_.jpg" alt="OEM Tools 2444 Cooling System Evac/Filler">
       <div>
-        <h4 style="margin: 0; color: #0099bb;">OEMTOOLS 24444: Cooling System Refiller AirEvac Kit</h4>
-        <p style="margin: 8px 0;">Easy to use, extremely good build quality from the gauge to the valves to the tubing used.</p>
-        <a href="https://www.amazon.com/dp/B01BW39HJS?psc=1&ref_=cm_sw_r_cp_ud_ct_CKR15TDAERPDA6SW3D2Z" target="_blank" style="color: white; background-color: #0099bb; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Check it on Amazon →</a>
+        <h4>OEMTOOLS 24444: Cooling System Refiller AirEvac Kit</h4>
+        <p>Easy to use, extremely good build quality from the gauge to the valves to the tubing used.</p>
+        <a href="https://www.amazon.com/dp/B01BW39HJS?psc=1&ref_=cm_sw_r_cp_ud_ct_CKR15TDAERPDA6SW3D2Z" target="_blank">Check it on Amazon →</a>
       </div>
     </div>
-      <div class="tool-item" style="margin-top: 40px; text-align: left; display: flex; gap: 20px; align-items: center;">
-      <img src="https://m.media-amazon.com/images/I/916j-7STUmL._AC_SL1500_.jpg" alt="LEXIVON Butane Torch" style="width: 200px; border-radius: 8px;">
+
+    <div class="tool-item">
+      <img src="https://m.media-amazon.com/images/I/916j-7STUmL._AC_SL1500_.jpg" alt="LEXIVON Butane Torch">
       <div>
-        <h4 style="margin: 0; color: #0099bb;">LEXIVON Butane Torch Multi-Function Kit</h4>
-        <p style="margin: 8px 0;">Easy to use, extremely good build quality from cordless soldering to brazing its done years of work and it's still going strong.</p>
-        <a href="https://a.co/d/hDa4AbL" target="_blank" style="color: white; background-color: #0099bb; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Check it on Amazon →</a>
+        <h4>LEXIVON Butane Torch Multi-Function Kit</h4>
+        <p>Easy to use, extremely good build quality from cordless soldering to brazing its done years of work and it's still going strong.</p>
+        <a href="https://a.co/d/hDa4AbL" target="_blank">Check it on Amazon →</a>
       </div>
     </div>
-    <div class="tool-item" style="margin-top: 40px; text-align: left; display: flex; gap: 20px; align-items: center;">
-      <img src="https://m.media-amazon.com/images/I/818Ykj4DAaL._AC_SL1500_.jpg" alt="GEARWRENCH Belt Tool Kit" style="width: 200px; border-radius: 8px;">
+
+    <div class="tool-item">
+      <img src="https://m.media-amazon.com/images/I/818Ykj4DAaL._AC_SL1500_.jpg" alt="GEARWRENCH Belt Tool Kit">
       <div>
-        <h4 style="margin: 0; color: #0099bb;">GEARWRENCH 3680D: 15Piece Serpentine Belt Kit</h4>
-        <p style="margin: 8px 0;">One of the most sturdy and important tools I own, A must have for any mechanic. I've abused and it's lasted.</p>
-        <a href="https://a.co/d/7DSE5j2" target="_blank" style="color: white; background-color: #0099bb; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Check it on Amazon →</a>
+        <h4>GEARWRENCH 3680D: 15Piece Serpentine Belt Kit</h4>
+        <p>One of the most sturdy and important tools I own, A must have for any mechanic. I've abused and it's lasted.</p>
+        <a href="https://a.co/d/7DSE5j2" target="_blank">Check it on Amazon →</a>
       </div>
-      </div>
-    <div class="tool-item" style="margin-top: 40px; text-align: left; display: flex; gap: 20px; align-items: center;">
-      <img src="https://m.media-amazon.com/images/I/71S744NcUnL._SL1500_.jpg" alt="JINKEY 4Tyre Press Equalizer" style="width: 200px; border-radius: 8px;">
+    </div>
+
+    <div class="tool-item">
+      <img src="https://m.media-amazon.com/images/I/71S744NcUnL._SL1500_.jpg" alt="JINKEY 4Tyre Press Equalizer">
       <div>
-        <h4 style="margin: 0; color: #0099bb;">JINKEY 4 Tire Pressure Equalizer System</h4>
-        <p style="margin: 8px 0;">Easy to setup and sturdy design. This tool allows for filling & balancing pressure in up to 4 tyres at once.</p>
-        <a href="https://a.co/d/eqPBEZO" target="_blank" style="color: white; background-color: #0099bb; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Check it on Amazon →</a>
+        <h4>JINKEY 4 Tire Pressure Equalizer System</h4>
+        <p>Easy to setup and sturdy design. This tool allows for filling & balancing pressure in up to 4 tyres at once.</p>
+        <a href="https://a.co/d/eqPBEZO" target="_blank">Check it on Amazon →</a>
       </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Barefoot Diagnostics. All rights reserved.</p>
+    <p><a href="index.html">Home</a> | <a href="AmazonTools.html">Amazon Tools</a> | <a href="DailyTips.html">Daily Tips</a></p>
+  </footer>
+</body>
+</html>
